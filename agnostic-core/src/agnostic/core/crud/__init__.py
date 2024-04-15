@@ -3,6 +3,7 @@ from .attachments import Attachments
 from .exceptions import CRUDException, DuplicateError, ForeignKeyError, NotFoundError
 from .logs import Logs
 from .metrics import Metrics
+from .metrics_ot import MetricsOverTime
 from .progress import Progress
 from .projects import Projects
 from .test_runs import TestRuns
@@ -27,6 +28,11 @@ async def get_tests():
 async def get_metrics():
     async with async_session() as session:
         yield Metrics(session)
+
+
+async def get_metrics_over_time():
+    async with async_session() as session:
+        yield MetricsOverTime(session)
 
 
 async def get_progress():
